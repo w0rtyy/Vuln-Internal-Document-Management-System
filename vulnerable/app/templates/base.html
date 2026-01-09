@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Internal DMS</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Internal Document System</h1>
+    <nav>
+        <a href="/dashboard">Dashboard</a> |
+        <a href="/documents-ui">Documents</a> |
+        {% if user.role == "admin" %}
+            <a href="/admin-ui">Admin</a> |
+        {% endif %}
+        <a href="/logout">Logout</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>

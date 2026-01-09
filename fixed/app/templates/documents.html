@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Documents</h2>
+
+<form method="get">
+    <label>Owner ID (⚠ vulnerable / can be used in URL (documents-ui?owner_id=x)):</label>
+    <input name="owner_id">
+    <button type="submit">Filter</button>
+</form>
+
+<table border="1">
+<tr>
+    <th>ID</th>
+    <th>Filename</th>
+    <th>Owner</th>
+    <th>Path</th>
+</tr>
+
+{% for doc in documents %}
+    <tr>
+        <td>{{ doc.id }}</td>
+        <td><a href="/documents-ui/{{ doc.id }}">{{ doc.filename }}</a></td>
+        <td>{{ doc.owner_id }}</td>
+        <td>{{ doc.file_path }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}
+
