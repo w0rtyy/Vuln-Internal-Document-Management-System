@@ -6,8 +6,8 @@ from datetime import datetime, timedelta, timezone
 from fastapi import FastAPI, Request, Form, Cookie
 
 
-from app.database import engine, Base, get_db
-from app import auth, documents, admin, models
+from fixed.app.database import engine, Base, get_db
+from fixed.app import auth, documents, admin, models
 from sqlalchemy.orm import Session
 from fastapi import Depends
 
@@ -39,7 +39,7 @@ def login_ui_post(
     password: str = Form(...),
     db: Session = Depends(get_db)
 ):
-    from app.auth import verify_password
+    from fixed.app.auth import verify_password
     user = db.query(models.User).filter(models.User.email == email).first()
     if not user or not verify_password(password, user.password_hash):
         return templates.TemplateResponse(
@@ -48,7 +48,7 @@ def login_ui_post(
         )
 
     response = RedirectResponse("/dashboard", status_code=302)
-    from app.auth import create_session_id
+    from fixed.app.auth import create_session_id
     sid = create_session_id()
 
     session = models.Session(

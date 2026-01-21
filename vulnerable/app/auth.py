@@ -4,8 +4,8 @@ from passlib.context import CryptContext
 from datetime import datetime, timedelta, timezone
 import secrets
 
-from app.database import get_db
-from app import models, schema
+from vulnerable.app.database import get_db
+from vulnerable.app import models, schema
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

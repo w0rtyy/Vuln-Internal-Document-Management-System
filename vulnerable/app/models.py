@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Boolean
-from app.database import Base
+from vulnerable.app.database import Base
 
 class User(Base):
     __tablename__ = "users"
